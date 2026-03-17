@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+    --background: 0.1 0.015 250;
+    --foreground: 0.92 0.04 200;
+    --card: 0.13 0.018 250;
+    --card-foreground: 0.92 0.04 200;
+    --popover: 0.12 0.02 250;
+    --popover-foreground: 0.92 0.04 200;
+    --primary: 0.88 0.18 195;
+    --primary-foreground: 0.08 0.015 250;
+    --secondary: 0.18 0.025 250;
+    --secondary-foreground: 0.88 0.08 200;
+    --muted: 0.16 0.02 250;
+    --muted-foreground: 0.55 0.05 210;
+    --accent: 0.2 0.03 250;
+    --accent-foreground: 0.88 0.18 195;
+    --destructive: 0.6 0.24 18;
+    --destructive-foreground: 0.98 0.01 0;
+    --border: 0.22 0.03 240;
+    --input: 0.18 0.025 250;
+    --ring: 0.78 0.16 195;
+    --chart-1: 0.88 0.18 195;
+    --chart-2: 0.6 0.24 18;
+    --chart-3: 0.75 0.2 140;
+    --chart-4: 0.8 0.18 270;
+    --chart-5: 0.75 0.2 60;
+    --sidebar: 0.11 0.016 250;
+    --sidebar-foreground: 0.92 0.04 200;
+    --sidebar-primary: 0.88 0.18 195;
+    --sidebar-primary-foreground: 0.08 0.015 250;
+    --sidebar-accent: 0.18 0.025 250;
+    --sidebar-accent-foreground: 0.88 0.18 195;
+    --sidebar-border: 0.22 0.03 240;
+    --sidebar-ring: 0.78 0.16 195;
+    /* Custom tactical tokens */
+    --neon-cyan: 0.88 0.18 195;
+    --neon-red: 0.6 0.26 18;
+    --grid-line: oklch(0.88 0.18 195 / 0.08);
+    --bracket-color: oklch(0.88 0.18 195 / 0.7);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400%);
+    opacity: 0;
+  }
+}
+
+@keyframes scanline-h {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+@keyframes pulse-ring-1 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3.5);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-2 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-3 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring-4 {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes alert-core {
+  0%,
+  100% {
+    box-shadow: 0 0 8px 2px oklch(0.6 0.26 18 / 0.8), 0 0 24px 6px
+      oklch(0.6 0.26 18 / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px oklch(0.6 0.26 18 / 1), 0 0 50px 16px
+      oklch(0.6 0.26 18 / 0.7);
+  }
+}
+
+@keyframes border-trace {
+  0% {
+    clip-path: inset(0 100% 100% 0);
+  }
+  25% {
+    clip-path: inset(0 0 100% 0);
+  }
+  50% {
+    clip-path: inset(0 0 0 0);
+  }
+  75% {
+    clip-path: inset(0 0 0 100%);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  93% {
+    opacity: 0.7;
+  }
+  94% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.8;
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px oklch(0.6 0.26 18 / 0.5), 0 0 30px
+      oklch(0.6 0.26 18 / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px oklch(0.6 0.26 18 / 0.9), 0 0 60px
+      oklch(0.6 0.26 18 / 0.5);
+  }
+}
+
+@keyframes text-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+  }
+  50% {
+    text-shadow: 0 0 12px currentColor, 0 0 24px currentColor, 0 0 36px
+      currentColor;
+  }
+}
+
+@keyframes slide-in-down {
+  0% {
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes new-event-flash {
+  0% {
+    background-color: oklch(0.6 0.26 18 / 0.3);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes bracket-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+@layer utilities {
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .neon-text-cyan {
+    color: oklch(var(--neon-cyan));
+    animation: text-glow 3s ease-in-out infinite;
+  }
+
+  .neon-text-red {
+    color: oklch(var(--neon-red));
+    animation: text-glow 1.5s ease-in-out infinite;
+  }
+
+  .neon-border-cyan {
+    border-color: oklch(var(--neon-cyan));
+    box-shadow: 0 0 6px oklch(var(--neon-cyan) / 0.5), inset 0 0 6px
+      oklch(var(--neon-cyan) / 0.1);
+  }
+
+  .neon-border-red {
+    border-color: oklch(var(--neon-red));
+    box-shadow: 0 0 10px oklch(var(--neon-red) / 0.6), inset 0 0 6px
+      oklch(var(--neon-red) / 0.1);
+  }
+
+  .tactical-card {
+    background: oklch(0.13 0.018 250);
+    border: 1px solid oklch(0.88 0.18 195 / 0.2);
+    box-shadow: 0 0 0 1px oklch(0.88 0.18 195 / 0.05), inset 0 1px 0
+      oklch(0.88 0.18 195 / 0.08);
+  }
+
+  .scanline-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0.88 0.18 195 / 0.015) 2px,
+      oklch(0.88 0.18 195 / 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .flicker {
+    animation: flicker 8s infinite;
+  }
+
+  .animate-radar-sweep {
+    animation: radar-sweep 3s linear infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-text-glow {
+    animation: text-glow 2s ease-in-out infinite;
+  }
+
+  .animate-bracket-pulse {
+    animation: bracket-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-new-event {
+    animation: new-event-flash 1.5s ease-out forwards;
+  }
+}
